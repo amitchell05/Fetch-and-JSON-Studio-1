@@ -6,6 +6,10 @@ window.addEventListener('load', function() {
 
             json = sortAstronauts(json);
 
+            container.innerHTML += `
+                <h4>Number of Astronauts: ${json.length}</h4>
+            `;
+
             for (let i = 0; i < json.length; i++) {
                 container.innerHTML += `
                     <div class="astronaut">
