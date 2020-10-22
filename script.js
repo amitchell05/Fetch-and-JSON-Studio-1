@@ -41,7 +41,7 @@ function setActiveStyle(data) {
     if (data.active === true) {
         text = `<li style="color: green">Active: ${data.active}</li>`;
     } else {
-        text  = `<li>Active: ${data.active}</li>`
+        text  = `<li>Active: ${data.active}</li>`;
     }
 
     return text;
