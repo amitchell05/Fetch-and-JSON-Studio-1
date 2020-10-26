@@ -2,31 +2,34 @@ window.addEventListener('load', function() {
     fetch("https://handlers.education.launchcode.org/static/astronauts.json").then(function(response) { 
         response.json().then( function(json) {
             console.log(json);
-            const container = document.querySelector('#container');
+            const container = document.getElementById('container');
+
+            let astronauts = '';
 
             json = sortAstronauts(json);
 
             container.innerHTML += `
                 <h4>Number of Astronauts: ${json.length}</h4>
             `;
-
-            for (let i = 0; i < json.length; i++) {
-                let activeStat = setActiveStyle(json[i]);
-
-                container.innerHTML += `
+            
+            for (astronaut of json) {
+                let activeStat = setActiveStyle(astronaut);
+                astronauts += `
                     <div class="astronaut">
                         <div class="bio">
-                            <h3>${json[i].firstName} ${json[i].lastName}</h3>
+                            <h3>${astronaut.firstName} ${astronaut.lastName}</h3>
                             <ul>
-                                <li>Hours in space: ${json[i].hoursInSpace}</li>
-                                ${activeStat}
-                                <li>Skills: ${json[i].skills.join(', ')}</li>
+                                <li>Hours in space: ${astronaut.hoursInSpace}</li>
+                                <li>Active: ${activeStat}</li>
+                                <li>Skills: ${astronaut.skills}</li>
                             </ul>
                         </div>
-                        <img class="avatar" src="${json[i].picture}">
+                        <img class="avatar" src="${astronaut.picture}">
                     </div>
                 `;
             }
+            
+            container.innerHTML += astronauts;
         });
     });
 });
